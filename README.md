@@ -1,4 +1,4 @@
-Todo App tutorial at https://ibaslogic.com/react-tutorial-for-beginners/
+[Todo App tutorial](https://ibaslogic.com/react-tutorial-for-beginners/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

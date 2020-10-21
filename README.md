@@ -1,4 +1,12 @@
+Built using Visual Studio Code and ReactJS.
+
 [Todo App tutorial](https://ibaslogic.com/react-tutorial-for-beginners/)
+
+I did the quick "Hello World" from Visual Studio [ReactJS Tutorial](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial).
+
+That simple tutorial helped me get the environment setup complete prior to starting here. That would be all the VS Code Extensions, NodeJS, and any other assorted pieces. 
+
+My dev environment is on two different machines, different locations. One laptop is Windows 7 and one is Windows 10 with the codebase shared and updated through GitHub.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

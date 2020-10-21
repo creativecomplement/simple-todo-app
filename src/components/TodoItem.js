@@ -2,7 +2,7 @@ import React from "react"
 
 class TodoItem extends React.Component{
     render() {
-        return <li>
+        return <li className="todo-item">
             <input
                 type="checkbox"
                 checked={this.props.todo.completed}

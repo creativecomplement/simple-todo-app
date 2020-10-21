@@ -2,7 +2,7 @@ import React from "react"
 import TodoList from "./TodoList"
 import Header from "./Header"
 import InputTodo from "./InputTodo"
-import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 class TodoContainer extends React.Component{
     state = {
@@ -37,25 +37,37 @@ class TodoContainer extends React.Component{
     }
 
     delTodo = id => {
-        this.setState({
-            todos: [
-                ...this.state.todos.filter(todo => {
-                    return todo.id !== id;
+            axios
+                .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+                .then(reponse =>
+                this.setState({
+                    todos: [
+                    ...this.state.todos.filter(todo => {
+                        return todo.id !== id
+                    }),
+                    ],
                 })
-            ]
-        });
-    }
+                )
+            }
 
     addTodoItem = title => {
-        const newTodo = {
-            id: uuidv4,
+        axios
+            .post ("https://jsonplaceholder.typicode.com/todos/",
+            {
             title: title,
             complete: false 
-        };
-        this.setState({
-            todos: [...this.state.todos, newTodo]
-        });
+        })
+        .then(response =>
+            this.setState({
+                todos: [...this.state.todos, response.data],
+            })
+        )
     };
+
+    componentDidMount() {
+        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+            .then(response => this.setState({ todos: response.data }));
+    }
 
     render() {
         return(

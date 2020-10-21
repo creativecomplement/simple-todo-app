@@ -41,6 +41,7 @@
     font-weight: 600;
     width: 20%;
     outline: none;
+    border-radius: 4px;
   }
   .todo-item {
     list-style-type: none;
@@ -51,11 +52,12 @@
     margin-right: 15px;
   }
   .todo-item button {
-    background: #d35e0f;
+    background: #ee0754;
     color: #fff;
     border: 1px solid #d35e0f;
     padding: 3px 7px;
     cursor: pointer;
     float: right;
     outline: none;
+    border-radius: 4px;
   }

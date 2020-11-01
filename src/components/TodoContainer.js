@@ -65,8 +65,16 @@ class TodoContainer extends React.Component{
     };
 
     componentDidMount() {
-        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
-            .then(response => this.setState({ todos: response.data }));
+        //axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+            //.then(response => this.setState({ todos: response.data }));
+        const fetch = require('isomorphic-fetch');
+        fetch("https://api.sheetson.com/v2/sheets/todo_items", {
+            headers: {
+                "Authorization" : "Bearer V9bK1R-7XHm-18UQEre_sHp8Quph_4nF1VM5-qa1FjIYSTGGN8fAk6sbWLg",
+                "X-Spreadsheet-Id" : "1EYQc1ffpp1ZCiynjufzVcGKP4qosztd3xunPe3L9SuM"
+            }
+        }).then(r => r.json())
+        .then(result => this.setState({ todos: result }))
     }
 
     render() {

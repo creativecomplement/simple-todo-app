@@ -67,6 +67,10 @@ class TodoContainer extends React.Component{
     componentDidMount() {
         //axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
             //.then(response => this.setState({ todos: response.data }));
+
+        //Notes for me: I am just going to use the Sheets API for this
+        //I am most likely running up against the limits of the shared
+        //connection for Sheetson, thus the 403.
         const fetch = require('isomorphic-fetch');
         fetch("https://api.sheetson.com/v2/sheets/todo_items", {
             headers: {

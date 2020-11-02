@@ -4,6 +4,13 @@ import Header from "./Header"
 import InputTodo from "./InputTodo"
 import axios from "axios";
 
+
+const apiKey = process.env.REACT_APP_TODO_SHEETS_KEY;
+
+const sheetID = process.env.REACT_APP_TODO_SHEETS_ID;
+
+const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values:batchGet?ranges=todo_items&majorDimension=ROWS&key=${apiKey}`;
+
 class TodoContainer extends React.Component{
     state = {
         todos: [
@@ -68,17 +75,24 @@ class TodoContainer extends React.Component{
         //axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
             //.then(response => this.setState({ todos: response.data }));
 
+            //when using the sheets data I need to go through and get the
+            //values by reading through each set (looping)
+            fetch(url)
+              .then(response => response.json())
+              .then(data => this.setState({ todos: data }));
+              //.then(data => {
+
         //Notes for me: I am just going to use the Sheets API for this
         //I am most likely running up against the limits of the shared
         //connection for Sheetson, thus the 403.
-        const fetch = require('isomorphic-fetch');
+/*         const fetch = require('isomorphic-fetch');
         fetch("https://api.sheetson.com/v2/sheets/todo_items", {
             headers: {
                 "Authorization" : "Bearer V9bK1R-7XHm-18UQEre_sHp8Quph_4nF1VM5-qa1FjIYSTGGN8fAk6sbWLg",
                 "X-Spreadsheet-Id" : "1EYQc1ffpp1ZCiynjufzVcGKP4qosztd3xunPe3L9SuM"
             }
         }).then(r => r.json())
-        .then(result => this.setState({ todos: result }))
+        .then(result => this.setState({ todos: result })) */
     }
 
     render() {

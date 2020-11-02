@@ -72,6 +72,9 @@ class TodoContainer extends React.Component{
     };
 
     componentDidMount() {
+
+        //okay, check out sheety.co
+        
         //axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
             //.then(response => this.setState({ todos: response.data }));
 

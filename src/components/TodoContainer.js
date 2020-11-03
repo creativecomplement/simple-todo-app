@@ -10,6 +10,7 @@ const apiKey = process.env.REACT_APP_TODO_SHEETS_KEY;
 const sheetID = process.env.REACT_APP_TODO_SHEETS_ID;
 
 const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values:batchGet?ranges=todo_items&majorDimension=ROWS&key=${apiKey}`;
+//const url = `https://jsonplaceholder.typicode.com/todos?_limit=10`
 
 class TodoContainer extends React.Component{
     state = {
@@ -82,7 +83,32 @@ class TodoContainer extends React.Component{
             //values by reading through each set (looping)
             fetch(url)
               .then(response => response.json())
-              .then(data => this.setState({ todos: data }));
+              .then(data => {
+                let batchRowValues = data.valueRanges[0].values;
+
+                const rows = [];
+                for (let i = 1; i < batchRowValues.length; i++) {
+                  let rowObject = {};
+                  for (let j = 0; j < batchRowValues[i].length; j++) {
+                      if (j < 2) {
+                        rowObject[batchRowValues[0][j]] = parseInt(batchRowValues[i][j]);
+                      } else if (j > 2){
+                        rowObject[batchRowValues[0][j]] = Boolean(parseInt(batchRowValues[i][j]));
+                      } else {
+                        rowObject[batchRowValues[0][j]] = batchRowValues[i][j];
+                      }
+                    
+                    //console.log(rowObject);
+                  }
+                  rows.push(rowObject);
+                }
+
+                  //const theData = 
+                  //console.log(rows);
+                this.setState({ todos: rows })
+              })
+              .catch(error => {console.log(error);
+            });
               //.then(data => {
 
         //Notes for me: I am just going to use the Sheets API for this

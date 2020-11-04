@@ -11,6 +11,8 @@ const sheetID = process.env.REACT_APP_TODO_SHEETS_ID;
 
 const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values:batchGet?ranges=todo_items&majorDimension=ROWS&key=${apiKey}`;
 //const url = `https://jsonplaceholder.typicode.com/todos?_limit=10`
+//  Trying out sheet.best (free to try) to simplify google sheets interaction for MVP
+//const url = `https://sheet.best/api/sheets/6c0797c0-6210-4e29-a4f4-7e5b87024c9a`
 
 class TodoContainer extends React.Component{
     state = {
